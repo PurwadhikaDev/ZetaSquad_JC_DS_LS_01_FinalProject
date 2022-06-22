@@ -72,13 +72,16 @@ Setiap baris dari dataset mewakili data penerbangan seorang pelanggan serta kepu
 | Arrival Delay in Minutes | Float | Minutes delayed when Arrival |
 | satisfaction | Int | Airline satisfaction level(Satisfied, neutral or dissatisfied) |
 
-![](https://github.com/reinaldoivan/CapstoneModule3/blob/main/Images/Imbalance.PNG)
+![](https://github.com/PurwadhikaDev/ZetaSquad_JC_DS_LS_01_FinalProject/blob/main/Images/Data%20Condition.PNG)
 
 <br />
 
 Data Analysis
 -------------
-[show 3-5 graph]
+![](https://github.com/PurwadhikaDev/ZetaSquad_JC_DS_LS_01_FinalProject/blob/main/Images/Satisfaction%20by%20Class.PNG)
+![](https://github.com/PurwadhikaDev/ZetaSquad_JC_DS_LS_01_FinalProject/blob/main/Images/Class%20by%20Flight%20Distance.PNG)
+![](https://github.com/PurwadhikaDev/ZetaSquad_JC_DS_LS_01_FinalProject/blob/main/Images/Customer%20Type%20by%20Age%20Group.PNG)
+![](https://github.com/PurwadhikaDev/ZetaSquad_JC_DS_LS_01_FinalProject/blob/main/Images/Class%20by%20Type%20of%20Travel.PNG)
 
 **Analysis :**
 
@@ -101,17 +104,17 @@ Modelling & Evaluation
 ----------------------
 Setelah melakukan cross validation, model yang terbaik digunakan adalah `CatBoost` dengan f1-score 0.7989 sebelum di tuning, dan 0.811 setelah di tuning. Kedua score didapat dari training set, dan mengalami perubahan di test set dimana XGBoost default memiliki f1-score lebih tinggi, comparison dapat dilihat di gambar berikut:
 
-![](https://github.com/reinaldoivan/CapstoneModule3/blob/main/Images/Classification%20Report%20Comparison.PNG)
+![](https://github.com/PurwadhikaDev/ZetaSquad_JC_DS_LS_01_FinalProject/blob/main/Images/Score%20Comparison.PNG)
 
 **Feature Importances :**
 
-![](https://github.com/reinaldoivan/CapstoneModule3/blob/main/Images/Feature%20Importances.PNG)
+![](https://github.com/PurwadhikaDev/ZetaSquad_JC_DS_LS_01_FinalProject/blob/main/Images/Feature%20Importances.PNG)
 
 Terlihat bahwa ternyata untuk model CatBoost kita, fitur/kolom `inflight wifi service` adalah yang paling penting, kemudian diikuti dengan `Type of Travel`, `Customer Type`, dan selanjutnya. Grafik ini akan kita gunakan sebagai acuan dalam memberikan rekomendasi di section berikutnya
 
 **SHAP Values :**
 
-![](https://github.com/reinaldoivan/CapstoneModule3/blob/main/Images/Feature%20Importances.PNG)
+![](https://github.com/PurwadhikaDev/ZetaSquad_JC_DS_LS_01_FinalProject/blob/main/Images/SHAP.PNG)
 
 Berdasarkan **SHAP Values**, kita dapat melihat:
 1. `Class`: Kelas bisnis berpengaruh secara positif terhadap target.
@@ -120,10 +123,30 @@ Berdasarkan **SHAP Values**, kita dapat melihat:
 4. `Total Delay`: Total waktu terlambat yang keicl berpengaruh secara positif terhadap target.
 5. Secara keseluruhan, semakin tinggi nilai kepuasan masing-masing features berpengaruh positif terhadap target, tetapi ada beberapa yang justru berpengaruh negatif seperti `Gate Location` dan `Ease of Online Booking`.
 
+<br />
+
 Conclusion & Recommendation
 ---------------------------
+**Confusion Matrix :**
+
+![](https://github.com/PurwadhikaDev/ZetaSquad_JC_DS_LS_01_FinalProject/blob/main/Images/Confusion%20Matrix.PNG)
+
+Informasi general seputar tiket:
+- Rata-rata tiket per orang = 116 USD (tidak dipisah oleh `class`)
+- Campaign/Incentive Expense = 6 USD (4.5%-5% dari revenue, kita mengambil kisaran terbesar)
+
+Summary:
+- Retained customer = 1.339.452 (TN)
+- Campaign Cost = 69.282 (TN) + 3.066 (FN) = 72.348 USD
+- Potential Loss = 45.124 USD (FP)
+- Potential Save = 50.964 USD (TP)
+- Total possible income after campaign cost = 1.273.034 USD
+
+<br />
 
 **Conclusion :**
+
+![](https://github.com/PurwadhikaDev/ZetaSquad_JC_DS_LS_01_FinalProject/blob/main/Images/Classification%20Report.PNG)
 
 Hal-hal yang dapat dikonklusikan berdasarkan hasil classification report:
 - Berdasarkan `Recall`, terdapat 98% pelanggan yang perlu diberikan insentif dan seharusnya tidak puas, dan terdapat 94% pelanggan yang tidak perlu diberikan insentif dan seharusnya puas.
