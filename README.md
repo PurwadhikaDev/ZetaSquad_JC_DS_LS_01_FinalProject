@@ -87,14 +87,14 @@ Data Analysis
 
 - Data balanced, dimana jumlah customer yang tidak `tidak satisfied/netral [0]` sebanyak 57% dan yang `satisfied [1]` 43%
 - Berdasarkan feature `Class`:
-  - Customer lebih banyak mengambil kelas *business* dan *economy* dibanding dengan *economy plus*.
-  - Jumlah pelanggan yang puas hampir berbanding terbalik antar kedua kelas, dimana terdapat lebih banyak pelanggan yang puas di kelas bisnis.
-  - Pelanggan pada kelompok umur di bawah 30 dan di atas 60 kebanyakan menaiki class Eco, dimana kelompok umur 40 sampai dengan 49 tahun kebanyakan menaiki Business.
-- Berdasarkan feature `Flight Distance`, pelanggan dengan penerbangan yang jauh cenderung mengambil penerbangan business class.
+  - Customer lebih banyak mengambil kelas Business dan Eco dibanding dengan Eco Plus.
+  - Jumlah pelanggan yang puas hampir berbanding terbalik antar kedua kelas, dimana terdapat lebih banyak pelanggan yang puas di kelas Business.
+  - Pelanggan pada kelompok umur di bawah 30 dan di atas 60 kebanyakan mengambil kelas Eco, dimana kelompok umur 40 sampai dengan 49 tahun kebanyakan mengambil kelas Business.
+- Berdasarkan feature `Flight Distance`, pelanggan dengan penerbangan yang jauh cenderung mengambil penerbangan kelas Business.
 - Berdasarkan feature `Customer Type`:
   - Jumlah customer yang loyal (82%) lebih tinggi dibanding yang tidak (18%)
   - Umur pelanggan yang loyal relatif lebih tua dibanding yang tidak.
-- Berdasarkan feature `Type of Travel`, pelanggan yang mengambil penerbangan business class cenderung memiliki tujuan sehubungan bisnis.
+- Berdasarkan feature `Type of Travel`, pelanggan yang mengambil penerbangan kelas Business cenderung memiliki tujuan sehubungan bisnis.
 
 *Note: Analisis yang ditampilkan hanya yang erat kaitannya dengan model dan rekomendasi. Untuk kelengkapan tabel dan analisis bisa dilihat di file notebook*
 
@@ -102,7 +102,7 @@ Data Analysis
 
 Modelling & Evaluation
 ----------------------
-Setelah melakukan cross validation, model yang terbaik digunakan adalah `CatBoost` dengan f1-score 0.7989 sebelum di tuning, dan 0.811 setelah di tuning. Kedua score didapat dari training set, dan mengalami perubahan di test set dimana XGBoost default memiliki f1-score lebih tinggi, comparison dapat dilihat di gambar berikut:
+Setelah melakukan cross validation, model yang terbaik digunakan adalah `CatBoost` dengan f1-score 0.956894 sebelum di tuning, dan 0.957916 setelah di tuning. Kedua score didapat dari training set, dan mengalami perubahan di test set dimana XGBoost default memiliki f1-score lebih tinggi, comparison dapat dilihat di gambar berikut:
 
 ![](https://github.com/PurwadhikaDev/ZetaSquad_JC_DS_LS_01_FinalProject/blob/main/Images/Score%20Comparison.PNG)
 
@@ -110,17 +110,17 @@ Setelah melakukan cross validation, model yang terbaik digunakan adalah `CatBoos
 
 ![](https://github.com/PurwadhikaDev/ZetaSquad_JC_DS_LS_01_FinalProject/blob/main/Images/Feature%20Importances.PNG)
 
-Terlihat bahwa ternyata untuk model CatBoost kita, fitur/kolom `inflight wifi service` adalah yang paling penting, kemudian diikuti dengan `Type of Travel`, `Customer Type`, dan selanjutnya. Grafik ini akan kita gunakan sebagai acuan dalam memberikan rekomendasi di section berikutnya
+Terlihat bahwa ternyata untuk model CatBoost kita, feature/kolom `inflight wifi service` adalah yang paling penting, kemudian diikuti dengan `Type of Travel`, `Customer Type`, dan selanjutnya. Grafik ini akan kita gunakan sebagai acuan dalam memberikan rekomendasi di section berikutnya.
 
 **SHAP Values :**
 
 ![](https://github.com/PurwadhikaDev/ZetaSquad_JC_DS_LS_01_FinalProject/blob/main/Images/SHAP.PNG)
 
 Berdasarkan **SHAP Values**, kita dapat melihat:
-1. `Class`: Kelas bisnis berpengaruh secara positif terhadap target.
-2. `Type of Travel`: Jenis travel bisnis berpengaruh secara positif terhadap target.
+1. `Class`: Kelas Business berpengaruh secara positif terhadap target.
+2. `Type of Travel`: Jenis travel Business berpengaruh secara positif terhadap target.
 3. `Customer Type`: Pelanggan yang setia berpengaruh secara positif terhadap target.
-4. `Total Delay`: Total waktu terlambat yang keicl berpengaruh secara positif terhadap target.
+4. `Total Delay`: Total waktu terlambat yang kecil berpengaruh secara positif terhadap target.
 5. Secara keseluruhan, semakin tinggi nilai kepuasan masing-masing features berpengaruh positif terhadap target, tetapi ada beberapa yang justru berpengaruh negatif seperti `Gate Location` dan `Ease of Online Booking`.
 
 <br />
@@ -182,6 +182,6 @@ Hal-hal yang bisa dilakukan untuk mengembangkan project dan modelnya lebih baik 
 **Limitation :**
 
 Model paling baik digunakan dengan beberapa batas nilai feature, seperti:
-- Age: 7-85 tahun
-- Flight Distance: 31-4.983 miles
-- Departure/Arrival Delay: 38-1.592 minutes
+- `Age`: 7-85 tahun
+- `Flight Distance`: 31-4.983 miles
+- `Departure/Arrival Delay`: 38-1.592 minutes
