@@ -146,7 +146,7 @@ Summary:
 
 **Conclusion :**
 
-![](https://github.com/PurwadhikaDev/ZetaSquad_JC_DS_LS_01_FinalProject/blob/main/Images/Classification%20Report.PNG)
+![](https://github.com/PurwadhikaDev/ZetaSquad_JC_DS_LS_01_FinalProject/blob/main/Images/Classification%20Report%20CatBoost.PNG)
 
 Hal-hal yang dapat dikonklusikan berdasarkan hasil classification report:
 - Berdasarkan `Recall`, terdapat 98% pelanggan yang perlu diberikan insentif dan seharusnya tidak puas, dan terdapat 94% pelanggan yang tidak perlu diberikan insentif dan seharusnya puas.
