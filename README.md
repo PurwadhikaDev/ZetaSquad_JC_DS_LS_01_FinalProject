@@ -1,9 +1,6 @@
 # ZetaSquad_JC_DS_LS_01_FinalProject
 
-Analysis & Machine Learning of Airline Passenger Satisfaction Database
-
-*Associated with Purwadhika Coding School for Final Project*
-
+**Database: Airline Passenger Satisfaction**
 <br />
 
 Business Problem Understanding
